@@ -4,11 +4,21 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/*
+ * Classe Banco
+ * 
+ * Simulando um bando de dados para o sistema gerenciador
+ * 
+ * */
 public class Banco {
-	
+
 	private static List<Empresa> lista = new ArrayList<>();
+
+	// simulando uma primary key
 	private static Integer chaveSequencial = 1;
-	
+
+	// Toda a evz que o sistema for reiniciado, será inicializado com as empresas
+	// abaixo
 	static {
 		Empresa empresa = new Empresa();
 		empresa.setId(chaveSequencial++);
@@ -24,19 +34,19 @@ public class Banco {
 		empresa.setId(Banco.chaveSequencial++);
 		Banco.lista.add(empresa);
 	}
-	
-	public List<Empresa> getEmpresas(){
+
+	public List<Empresa> getEmpresas() {
 		return Banco.lista;
 	}
 
 	public void removeEmpresa(Integer id) {
-		
+
 		Iterator<Empresa> it = lista.iterator();
-		
-		while(it.hasNext()) {
+
+		while (it.hasNext()) {
 			Empresa emp = it.next();
-			
-			if(emp.getId() == id) {
+
+			if (emp.getId() == id) {
 				it.remove();
 			}
 		}
@@ -44,7 +54,7 @@ public class Banco {
 
 	public Empresa buscaEmpresaPelaId(Integer id) {
 		for (Empresa empresa : lista) {
-			if(empresa.getId() == id) {
+			if (empresa.getId() == id) {
 				return empresa;
 			}
 		}

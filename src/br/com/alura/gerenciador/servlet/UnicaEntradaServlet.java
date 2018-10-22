@@ -11,6 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.alura.gerenciador.acao.Acao;
 
+/*
+ * Nossa abordagem é funcional, mas vários controladores do mercado 
+ * usam uma outra abordagem para definir o nome da ação. 
+ * A ideia é que nosso controlador receba qualquer requisição para 
+ * qualquer URL, através do mapeamento /:
+ * 
+ * @WebServlet("/")
+ * */
 
 @WebServlet("/entrada")
 public class UnicaEntradaServlet extends HttpServlet {
@@ -21,6 +29,13 @@ public class UnicaEntradaServlet extends HttpServlet {
 		String paramAcao = request.getParameter("acao");
 		
 		String nomeDaClasse = "br.com.alura.gerenciador.acao." + paramAcao;
+		
+		/*
+		 * O método getRequestURI(), do objeto HttpServletRequest, devolve exatamente
+		 * essa informação:
+		 */
+		String url = request.getRequestURI();
+		System.out.println("URL: " + url);
 		
 		String nome;
 		try {

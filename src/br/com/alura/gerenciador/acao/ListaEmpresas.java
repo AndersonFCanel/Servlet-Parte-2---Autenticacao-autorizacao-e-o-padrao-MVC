@@ -10,17 +10,26 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.alura.gerenciador.modelo.Banco;
 import br.com.alura.gerenciador.modelo.Empresa;
 
-public class ListaEmpresas implements Acao{
-	
-	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+public class ListaEmpresas implements Acao {
+
+	public String executa(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		System.out.println("listando empresas");
-		
+
 		Banco banco = new Banco();
 		List<Empresa> lista = banco.getEmpresas();
-		
+
 		request.setAttribute("empresas", lista);
-		
+
+		// AULA 02 ==> Esse tipo de tarefa deve ser executada no servlet
+		// despachando a requisição e seus parâmetros para outra servlet
+		// RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresas.jsp");
+		// 'passando para frente'
+		// rd.forward(request, response);
+
+		// O "forward:" serve para fazer um foward para o jsp
+		// return "/listaEmpresas.jsp";
 		return "forward:listaEmpresas.jsp";
 	}
 

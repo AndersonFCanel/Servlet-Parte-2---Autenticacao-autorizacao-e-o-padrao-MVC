@@ -12,17 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.alura.gerenciador.modelo.Banco;
 import br.com.alura.gerenciador.modelo.Empresa;
 
-public class AlteraEmpresa  implements Acao{
+public class AlteraEmpresa implements Acao {
 
-	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	public String executa(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String nomeEmpresa = request.getParameter("nome");
 		String paramDataEmpresa = request.getParameter("data");
 		String paramId = request.getParameter("id");
 		Integer id = Integer.valueOf(paramId);
-		
+
 		System.out.println("acao altera empresa " + id);
-		
+
 		Date dataAbertura = null;
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -30,13 +31,18 @@ public class AlteraEmpresa  implements Acao{
 		} catch (ParseException e) {
 			throw new ServletException(e);
 		}
-		
+
 		Banco banco = new Banco();
 		Empresa empresa = banco.buscaEmpresaPelaId(id);
 		empresa.setNome(nomeEmpresa);
 		empresa.setDataAbertura(dataAbertura);
-		
+
+		// AULA 02 ==> Esse tipo de tarefa deve ser executada no servlet
+		// response.sendRedirect("entrada?acao=ListaEmpresas");//AULA 02 ==> Esse tipo
+		// de tarefa deve ser executada no servlet
+		// response.sendRedirect("entrada?acao=ListaEmpresas");
+
 		return "redirect:entrada?acao=ListaEmpresas";
-	
+
 	}
 }
