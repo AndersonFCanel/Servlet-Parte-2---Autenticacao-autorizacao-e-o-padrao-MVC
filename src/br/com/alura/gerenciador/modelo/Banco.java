@@ -13,6 +13,7 @@ import java.util.List;
 public class Banco {
 
 	private static List<Empresa> lista = new ArrayList<>();
+	private static List<Usuario> listaUsuarios = new ArrayList<>();
 
 	// simulando uma primary key
 	private static Integer chaveSequencial = 1;
@@ -30,6 +31,18 @@ public class Banco {
 		lista.add(empresa2);
 	}
 
+	static {
+		Usuario u1 = new Usuario();
+		u1.setLogin("and");
+		u1.setSenha("123");
+		Usuario u2 = new Usuario();
+		u1.setLogin("pry");
+		u1.setSenha("123");
+
+		listaUsuarios.add(u1);
+		listaUsuarios.add(u2);
+	}
+
 	public void adiciona(Empresa empresa) {
 		empresa.setId(Banco.chaveSequencial++);
 		Banco.lista.add(empresa);
@@ -40,17 +53,21 @@ public class Banco {
 	}
 
 	public void removeEmpresa(Integer id) {
-
+		// pederia ser feito com foreach
 		Iterator<Empresa> it = lista.iterator();
 
 		while (it.hasNext()) {
 			Empresa emp = it.next();
 
-			if (emp.getId() == id) {
+			if (emp.getId() == id) {	
 				it.remove();
 			}
 		}
 	}
+	// Exemplo do que foi dito n0 comentário anterior:
+	/*
+	 * for (Empresa empresa : lista) { if(empresa.getId() == id) { it.remove(); } }
+	 */
 
 	public Empresa buscaEmpresaPelaId(Integer id) {
 		for (Empresa empresa : lista) {
@@ -61,4 +78,12 @@ public class Banco {
 		return null;
 	}
 
+	public Usuario existeUsuario(String login, String senha) {
+		for (Usuario usuario : listaUsuarios) {
+			if (usuario.ehIgual(login, senha)) {
+				return usuario;
+			}
+		}
+		return null;
+	}
 }
