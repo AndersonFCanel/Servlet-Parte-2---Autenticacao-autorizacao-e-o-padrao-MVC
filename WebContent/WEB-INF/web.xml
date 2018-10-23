@@ -21,36 +21,33 @@
 		<welcome-file>bem-vindo.html</welcome-file>
 	</welcome-file-list>
 
-	<!-- <login-config>
-		<auth-method>BASIC</auth-method>
-	</login-config>
+	<servlet>
+		<servlet-name>OiMundoServlet</servlet-name>
+		<servlet-class>br.com.alura.gerenciador.servlet.OiMundoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OiMundoServlet</servlet-name>
+		<url-pattern>/ola</url-pattern>
+	</servlet-mapping>
 
-	<security-role>
-		<role-name>ADMINISTRADOR</role-name>
-	</security-role>
 
-	<security-role>
-		<role-name>USUARIO</role-name>
-	</security-role>
+	<!-- Timeout da sessão -->
+	<session-config>
+		<!-- 10 min -->
+		<session-timeout>10</session-timeout>
+	</session-config>
+	<!-- é um timeout de desuso. No caso acima, o Tomcat só removerá a sessão 
+		se o usuário não ficar ativo por 10 minutos. -->
 
-	<security-constraint>
-		<web-resource-collection>
-			<web-resource-name>acesso controlador</web-resource-name>
-			<url-pattern>/entrada</url-pattern>
-		</web-resource-collection>
-		<auth-constraint>
-			<role-name>ADMINISTRADOR</role-name>
-		</auth-constraint>
-	</security-constraint>
 
-	<security-constraint>
-		<web-resource-collection>
-			<web-resource-name>acesso a paginas html</web-resource-name>
-			<url-pattern>*.html</url-pattern>
-		</web-resource-collection>
-		<auth-constraint>
-			<role-name>USUARIO</role-name>
-		</auth-constraint>
-	</security-constraint> -->
-	
+
+	<!-- <login-config> <auth-method>BASIC</auth-method> </login-config> <security-role> 
+		<role-name>ADMINISTRADOR</role-name> </security-role> <security-role> <role-name>USUARIO</role-name> 
+		</security-role> <security-constraint> <web-resource-collection> <web-resource-name>acesso 
+		controlador</web-resource-name> <url-pattern>/entrada</url-pattern> </web-resource-collection> 
+		<auth-constraint> <role-name>ADMINISTRADOR</role-name> </auth-constraint> 
+		</security-constraint> <security-constraint> <web-resource-collection> <web-resource-name>acesso 
+		a paginas html</web-resource-name> <url-pattern>*.html</url-pattern> </web-resource-collection> 
+		<auth-constraint> <role-name>USUARIO</role-name> </auth-constraint> </security-constraint> -->
+
 </web-app>

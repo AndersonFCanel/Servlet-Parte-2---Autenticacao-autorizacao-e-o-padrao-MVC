@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.alura.gerenciador.modelo.Banco;
 import br.com.alura.gerenciador.modelo.Empresa;
@@ -16,6 +17,11 @@ public class ListaEmpresas implements Acao {
 			throws ServletException, IOException {
 
 		System.out.println("listando empresas");
+		
+		/*HttpSession sessao = request.getSession();
+		if(sessao.getAttribute("usuarioLogado")==null) {
+			return "redirect:entrada?acao=LoginForm";
+		}*/
 
 		Banco banco = new Banco();
 		List<Empresa> lista = banco.getEmpresas();

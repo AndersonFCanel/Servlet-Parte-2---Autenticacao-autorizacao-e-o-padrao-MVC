@@ -21,6 +21,7 @@ public class Banco {
 	// Toda a evz que o sistema for reiniciado, será inicializado com as empresas
 	// abaixo
 	static {
+		//CADASTRANDO EMPRESAS NO BANCO
 		Empresa empresa = new Empresa();
 		empresa.setId(chaveSequencial++);
 		empresa.setNome("Alura");
@@ -29,20 +30,19 @@ public class Banco {
 		empresa2.setNome("Caelum");
 		lista.add(empresa);
 		lista.add(empresa2);
-	}
-
-	static {
+		
+		//CADASTRANDO USUÁRIOS NO BANCO
 		Usuario u1 = new Usuario();
 		u1.setLogin("and");
 		u1.setSenha("123");
 		Usuario u2 = new Usuario();
-		u1.setLogin("pry");
-		u1.setSenha("123");
-
+		u2.setLogin("pry");
+		u2.setSenha("123");
 		listaUsuarios.add(u1);
 		listaUsuarios.add(u2);
 	}
 
+	
 	public void adiciona(Empresa empresa) {
 		empresa.setId(Banco.chaveSequencial++);
 		Banco.lista.add(empresa);
@@ -79,7 +79,10 @@ public class Banco {
 	}
 
 	public Usuario existeUsuario(String login, String senha) {
+		System.out.println("(VALORES RECEBIDOS PARA VERIFICAÇÃO NO BD): "+login +" :: "+senha );
+		int i =0;
 		for (Usuario usuario : listaUsuarios) {
+			System.out.println("USUARIOS: "+ i++ +" - "+ usuario.getLogin());
 			if (usuario.ehIgual(login, senha)) {
 				return usuario;
 			}
