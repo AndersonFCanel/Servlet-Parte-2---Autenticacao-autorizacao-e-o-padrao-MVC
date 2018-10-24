@@ -28,23 +28,29 @@ public class EmpresasService extends HttpServlet {
 
 		List<Empresa> empresas = new Banco().getEmpresas();
 
-		// DEVOLVENDO JSON COMO RESPOSTA
-		// Gson gson = new Gson();
-		// String json = gson.toJson(empresas);
-		// response.setContentType("application/json");
-		// response.getWriter().print(json);
+		// valor é definido pelo cliente WEBSERVICE
+		String valor = request.getHeader("accept");
 
-		
-		// DEVOLVENDO XML COMO RESPOSTA
-		XStream xtream = new XStream();
-		//Quando encontrar um objeto do tipo empresa nomear como empresa no XML
-		xtream.alias("empresa", Empresa.class);
-		String xml = xtream.toXML(empresas);
-		response.setContentType("application/xml");
-		response.getWriter().print(xml);
-		
-		
-		//OBS: Então como funciona a autenticação no Web Service?  API Key
+		if (valor.endsWith("json")) {
+			// DEVOLVENDO JSON COMO RESPOSTA
+			Gson gson = new Gson();
+			String json = gson.toJson(empresas);
+			response.setContentType("application/json");
+			response.getWriter().print(json);
+		} else if (valor.endsWith("xml")) {
+			// DEVOLVENDO XML COMO RESPOSTA
+			XStream xtream = new XStream();
+			// Quando encontrar um objeto do tipo empresa nomear como empresa no XML
+			xtream.alias("empresa", Empresa.class);
+			String xml = xtream.toXML(empresas);
+			response.setContentType("application/xml");
+			response.getWriter().print(xml);
+		} else {
+			response.setContentType("application/json");
+			response.getWriter().print("{'message': 'no content'}");
+		}
+
+		// OBS: Então como funciona a autenticação no Web Service? API Key
 
 	}
 }
