@@ -16,6 +16,7 @@ public class ListaEmpresas implements Acao {
 	public String executa(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		
 		System.out.println("listando empresas");
 		
 		/*HttpSession sessao = request.getSession();

@@ -21,7 +21,11 @@ import br.com.alura.gerenciador.acao.Acao;
  * @WebServlet("/")
  * */
 
-@WebServlet("/entrada")
+
+//ATENÇÃO  ==>>ATRIBUIÇÕES DESTA SERVLET REPASSADAS AO ControladorFilter.Java
+
+
+//@WebServlet("/entrada") 
 public class UnicaEntradaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -29,14 +33,15 @@ public class UnicaEntradaServlet extends HttpServlet {
 		
 		String paramAcao = request.getParameter("acao");
 		
-		HttpSession sessao = request.getSession();
-		boolean usuarioNaoEstalogado = (sessao.getAttribute("usuarioLogado")==null);
-		boolean ehUmaAcaoProtegida = !(paramAcao.equals("Login")||paramAcao.equals("LoginForm"));
-		
-		if(usuarioNaoEstalogado && ehUmaAcaoProtegida) {
-			response.sendRedirect("entrada?acao=LoginForm");
-			return;
-		}
+		//Verificação de segurança atribuida aos Filter's
+//		HttpSession sessao = request.getSession();
+//		boolean usuarioNaoEstalogado = (sessao.getAttribute("usuarioLogado")==null);
+//		boolean ehUmaAcaoProtegida = !(paramAcao.equals("Login")||paramAcao.equals("LoginForm"));
+//		
+//		if(usuarioNaoEstalogado && ehUmaAcaoProtegida) {
+//			response.sendRedirect("entrada?acao=LoginForm");
+//			return;
+//		}
 	
 		
 		String nomeDaClasse = "br.com.alura.gerenciador.acao." + paramAcao;

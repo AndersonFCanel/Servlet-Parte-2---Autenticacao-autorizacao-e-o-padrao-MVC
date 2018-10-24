@@ -82,7 +82,7 @@ public class Banco {
 		System.out.println("(VALORES RECEBIDOS PARA VERIFICAÇÃO NO BD): "+login +" :: "+senha );
 		int i =0;
 		for (Usuario usuario : listaUsuarios) {
-			System.out.println("USUARIOS: "+ i++ +" - "+ usuario.getLogin());
+			System.out.println("USUARIO N°: "+ i++ +" - "+ usuario.getLogin());
 			if (usuario.ehIgual(login, senha)) {
 				return usuario;
 			}
