@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.thoughtworks.xstream.XStream;
 
 import br.com.alura.gerenciador.modelo.Banco;
 import br.com.alura.gerenciador.modelo.Empresa;
@@ -22,26 +23,28 @@ public class EmpresasService extends HttpServlet {
 		super();
 	}
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		List<Empresa> empresas = new Banco().getEmpresas();
+
+		// DEVOLVENDO JSON COMO RESPOSTA
+		// Gson gson = new Gson();
+		// String json = gson.toJson(empresas);
+		// response.setContentType("application/json");
+		// response.getWriter().print(json);
+
 		
-		Gson gson = new Gson();
-		String json = gson.toJson(empresas);
+		// DEVOLVENDO XML COMO RESPOSTA
+		XStream xtream = new XStream();
+		//Quando encontrar um objeto do tipo empresa nomear como empresa no XML
+		xtream.alias("empresa", Empresa.class);
+		String xml = xtream.toXML(empresas);
+		response.setContentType("application/xml");
+		response.getWriter().print(xml);
 		
 		
-		response.setContentType("application/json");
-		response.getWriter().print(json);
+		//OBS: Então como funciona a autenticação no Web Service?  API Key
+
 	}
-
-	// protected void doGet(HttpServletRequest request, HttpServletResponse
-	// response) throws ServletException, IOException {
-	// response.getWriter().append("Served at: ").append(request.getContextPath());
-	// }
-	//
-	// protected void doPost(HttpServletRequest request, HttpServletResponse
-	// response) throws ServletException, IOException {
-	// doGet(request, response);
-	// }
-
 }
