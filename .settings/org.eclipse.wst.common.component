@@ -2,7 +2,7 @@
     <wb-module deploy-name="gerenciador">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="gerenciador"/>
-        <property name="java-output-path" value="/gerenciador/build/classes"/>
+        <property name="context-root" value="Tetste"/>
+        <property name="java-output-path" value="/Tetste/build/classes"/>
     </wb-module>
 </project-modules>

@@ -23,6 +23,7 @@ public class EmpresasService extends HttpServlet {
 		super();
 	}
 
+	//Classe resposável por receber a requisição do serviço
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
